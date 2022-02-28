@@ -1,5 +1,8 @@
 BUILD_DIR=${PWD}/build/
 QEMU_ARGS=--nographic --serial mon:stdio -machine virt -cpu cortex-a7
+BIN_FLAGS=-O binary
+LD_FLAGS=-T linker.ld  --fatal-warnings
+AS_FLAGS=--fatal-warnings
 
 # enable assembly debugging if DEBUG flag is set
 ifdef DEBUG
@@ -25,12 +28,13 @@ clean:
 bin: ${BUILD_DIR}/boot.bin
 
 ${BUILD_DIR}/boot.bin: ${BUILD_DIR}/boot.elf | ${BUILD_DIR}
-	@arm-none-eabi-objcopy -O binary $< $@
+	@arm-none-eabi-objcopy ${BIN_FLAGS} $< $@
+
 ${BUILD_DIR}/boot.elf: ${BUILD_DIR}/boot.o | ${BUILD_DIR}
-	@arm-none-eabi-ld -e entry -o $@ $< --fatal-warnings
+	@arm-none-eabi-ld ${LD_FLAGS} -o $@ $<
 
 ${BUILD_DIR}/boot.o: src/boot.s | ${BUILD_DIR}
-	@arm-none-eabi-as $< -o $@ --fatal-warnings
+	@arm-none-eabi-as ${AS_FLAGS} $< -o $@
 
 ${BUILD_DIR}:
 	@mkdir $@
