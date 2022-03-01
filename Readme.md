@@ -10,5 +10,5 @@ It is written in Rust.
 3. `rust`
 
 ### Running
-To run it in qemu go to `boot_loader/` and run `make run`
+To run it in qemu go to `bootloader/` and run `make run`. check [this](bootloader/Readme.md) for emulating.
 

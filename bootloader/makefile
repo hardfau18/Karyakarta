@@ -27,8 +27,6 @@ run: ${BUILD_DIR}/boot.bin
 clean:
 	@rm -rf ${BUILD_DIR}
 
-bin: ${BUILD_DIR}/boot.bin
-
 ${BUILD_DIR}/boot.bin: ${BUILD_DIR}/boot.elf | ${BUILD_DIR}
 	@arm-none-eabi-objcopy ${BIN_FLAGS} $< $@
 
