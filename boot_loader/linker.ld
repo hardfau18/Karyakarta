@@ -1,7 +1,7 @@
 ENTRY(entry)
 
 SECTIONS{
-    . = 0x10000;    /* qemu loads kernel at 0x10000, TODO: add your own firmware and load the bootloader*/
+    . = 0x40010000;    /* qemu loads kernel at 0x40010000, TODO: add your own firmware and load the bootloader*/
     .text   : {*(.text)}
     .data   : {*(.data)}
     .bss    : {*(.bss)}

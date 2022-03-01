@@ -12,6 +12,7 @@ endif
 # listens on port 1234 for gdb connections
 ifdef GDB
 	QEMU_ARGS += -S -s
+	AS_FLAGS += -g
 endif
 
 .PHONY: clean bin run
@@ -20,7 +21,8 @@ bin: ${BUILD_DIR}/boot.bin
 	@echo ============all done==================
 
 run: ${BUILD_DIR}/boot.bin
-	qemu-system-arm -kernel $< ${QEMU_ARGS}
+	@echo ===== running qemu image ======
+	@qemu-system-arm -kernel $< ${QEMU_ARGS}
 
 clean:
 	@rm -rf ${BUILD_DIR}
