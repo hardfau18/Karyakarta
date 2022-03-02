@@ -1,0 +1,6 @@
+[build]
+target = "karyakarta.json"
+
+# if incase of custom target core and compiler builtins needs to be recompiled
+[unstable]
+build-std = ["core", "compiler_builtins"]
