@@ -14,6 +14,7 @@ To run it in qemu go to `bootloader/` and run `make run`. check [this](bootloade
 
 #### Some other Resources
 - For beginner to get started writing simple x86 os check [this book](https://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)
+- writing operating system for arm/raspberry-pi [Highly recommend this](https://github.com/rust-embedded/rust-raspberrypi-OS-tutorials)
 - This [site: osdev](https://wiki.osdev.org/) gives all the necessory information for writing an operating system
 - If you want to follow some tutorial [This repository](https://github.com/cfenollosa/os-tutorial) describes everything step by step
 - For writing simple operating system in rust, Check this [blog post](https://os.phil-opp.com/). It also describes how to write no_std rust

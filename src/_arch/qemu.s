@@ -1,11 +1,9 @@
-.arm
+.section .text._start
 
-// entry function of the code
-.global entry
-entry:
-    // setup stack with stack address later given in linker.ld script
-    ldr sp, =stack_top
-    // no need of BL since it will never return
+.global _start
+
+_start:
+	
     ldr r1, =console
     ldr r1, [r1]        // get the uart value
     ldr r2, =msg
@@ -15,14 +13,9 @@ print_msg:
     cmp r3, #0              // if the character is 0 (null) then loop infinitely
     BNE print_msg
 
-// loop infinitely
 loop:
-    B loop
+	wfe
+	b loop
 
-msg: .string "Booting your OS"
+msg: .string "Os is started. hold tight!!!"
 console:.word 0x09000000
-
-.org 0x1FE
-// bootsector flag
-.short 0xaa55
-

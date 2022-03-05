@@ -1,5 +1,5 @@
 [build]
-target = "karyakarta.json"
+target = "qemu.json"
 
 # if incase of custom target core and compiler builtins needs to be recompiled
 [unstable]
