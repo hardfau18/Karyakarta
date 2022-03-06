@@ -2,6 +2,7 @@ TARGET 		?=qemu
 MODE		?=debug
 
 QEMU_ARGS	=--nographic --serial mon:stdio -machine virt -cpu cortex-a7 -m 100m
+
 BIOS_DIR 	?=firmware
 TARGET_DIR	=${CURDIR}/target/${TARGET}/${MODE}
 OS_TARGET 	?=${TARGET_DIR}/karyakarta
@@ -15,7 +16,7 @@ endif
 
 # enable assembly debugging if DEBUG flag is set
 ifdef DEBUG
-	QEMU_ARGS += -d in_asm -D ${BUILD_DIR}/log
+	QEMU_ARGS += -d in_asm -D ${TARGET_DIR}/log
 endif
 
 # listens on port 1234 for gdb connections
@@ -25,7 +26,7 @@ ifdef GDB
 endif
 ############### Rules ##############################
 
-.PHONY: all clean run os bios ${OS_TARGET}
+.PHONY: all clean run os bios ${OS_TARGET} ${BIOS_BIN}
 
 all: os bios
 
@@ -39,8 +40,7 @@ clean:
 
 run: ${OS_BIN} ${BIOS_BIN}
 	@echo ===== running qemu image ======
-	@qemu-system-arm ${QEMU_ARGS} -kernel ${OS_BIN}
-	# @qemu-system-arm -bios ${BIOS_BIN} ${QEMU_ARGS} -kernel ${OS_BIN}
+	@qemu-system-arm -bios ${BIOS_BIN} ${QEMU_ARGS} -device loader,addr=0x40100000,file=${OS_BIN}
 
 ${OS_BIN}: ${OS_TARGET}
 	@echo "Generating os ${OS_BIN}"
@@ -51,4 +51,4 @@ ${OS_TARGET}:
 
 ${BIOS_BIN}:
 	@echo "building bios: ${BIOS_BIN}"
-	@make -C ${BIOS_DIR} BIN_DIR=${TARGET_DIR} --no-print-directory bin
+	@make -C ${BIOS_DIR} BIN_DIR=${TARGET_DIR} --no-print-directory $@

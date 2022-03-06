@@ -8,11 +8,11 @@ AS_FLAGS	=--fatal-warnings
 .PHONY: clean bin run
 
 bin: ${BIN_DIR}/boot.bin
-	@echo ============all done==================
+	@echo ============generated bin $<==================
 
 
 clean:
-	rm -rf ${BUILD_DIR}
+	@rm -rf ${BUILD_DIR}
 
 ${BIN_DIR}/boot.bin: ${BUILD_DIR}/boot.elf | ${BIN_DIR}/
 	@arm-none-eabi-objcopy ${BIN_FLAGS} $< $@

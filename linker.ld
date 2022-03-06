@@ -1,4 +1,3 @@
-
 ENTRY(_start)
 
 PHDRS
@@ -7,7 +6,7 @@ PHDRS
 }
 
 SECTIONS{
-    . = 0x40010000;
+    . = 0x40100000;
     .text : {
         KEEP(*(.text._start))
         } :segment_code

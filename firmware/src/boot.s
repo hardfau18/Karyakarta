@@ -18,9 +18,9 @@ print_msg:
     ldr r1, [r1]
     Bx r1
 
-msg: .string "Booting your OS"
+msg: .string "Booting your OS\n"
 console:.word 0x09000000
-start_addr: .word 0x40010000
+start_addr: .word 0x40100000
 
 .org 0x1FE
 // bootsector flag
