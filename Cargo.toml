@@ -11,3 +11,10 @@ panic = "abort"
 
 [dependencies]
 cortex-a = "*"
+spin = "0.9"
+volatile = "0.4"
+
+[dependencies.lazy_static]
+version="*"
+features = ["spin_no_std"]
+

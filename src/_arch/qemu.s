@@ -4,7 +4,6 @@
 .global _start
 
 _start:
-	
     ldr r1, =console
     ldr r1, [r1]        // get the uart value
     ldr r2, =msg
@@ -25,8 +24,8 @@ setup_stack:
     b _start_rust
 
 loop:
-	wfe
-	b loop
+    wfe
+    b loop
 
-msg: .string "Os is started. hold tight!!!"
+msg: .string "Bootloader started!!!, starting rust\n"
 console:.word 0x09000000
