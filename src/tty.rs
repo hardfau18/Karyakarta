@@ -34,5 +34,8 @@ macro_rules! println {
 }
 #[macro_export]
 macro_rules! print{
-    ($($arg:tt)*) => {$crate::tty::TTY.lock().write_fmt(format_args!($($arg)*)).unwrap()};
+    ($($arg:tt)*) => {
+        use core::fmt::Write;
+        $crate::tty::TTY.lock().write_fmt(format_args!($($arg)*)).unwrap()
+    };
 }

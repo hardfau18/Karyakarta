@@ -26,7 +26,7 @@ ifdef GDB
 endif
 ############### Rules ##############################
 
-.PHONY: all clean run os bios ${OS_TARGET} ${BIOS_BIN}
+.PHONY: all clean run os bios ${OS_TARGET} ${BIOS_BIN} gdb
 
 all: os bios
 
@@ -37,6 +37,9 @@ bios: ${BIOS_BIN}
 clean:
 	@cargo clean
 	@make -C ${BIOS_DIR} clean --no-print-directory
+
+gdb: 
+	@ arm-none-eabi-gdb -q ${OS_TARGET}
 
 run: ${OS_BIN} ${BIOS_BIN}
 	@echo ===== running qemu image ======

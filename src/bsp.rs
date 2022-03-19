@@ -1,9 +1,11 @@
 use core::panic::PanicInfo;
+use crate::println;
 
 pub const UART1:*mut u8 = 0x09000000 as *mut u8;
 
 #[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
     crate::cpu::wait_forever();
 }
 
